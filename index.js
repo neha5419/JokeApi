@@ -51,7 +51,7 @@ app.get("/api/jokes", (req, res) => {
   });
 });
 
-app.get("/api/users/:id",(req,res)=>{
+app.get("/api/jokes/:id",(req,res)=>{
     const id=Number(req.params.id);
   const joke=JOKE.find((item)=>{
         return item.id===id;
@@ -78,7 +78,7 @@ function middleware(req,res,next){
 
 }
 //This is post route
-app.post("/api/users",middleware,(req,res)=>{
+app.post("/api/jokes",middleware,(req,res)=>{
     const data=req.body;
     if(!data.title && !data.content){
        return res.status(400).json({error:"no body to post data"});
@@ -93,7 +93,7 @@ app.post("/api/users",middleware,(req,res)=>{
 })
 //this is patch route
 
-app.patch("/api/users/:id",middleware,(req,res)=>{
+app.patch("/api/jokes/:id",middleware,(req,res)=>{
     const id=Number(req.params.id);
     const body=req.body;
 
@@ -117,7 +117,7 @@ app.patch("/api/users/:id",middleware,(req,res)=>{
 
 //delete routee...
 
-app.delete("/api/users/:id",middleware,(req,res)=>{
+app.delete("/api/jokes/:id",middleware,(req,res)=>{
    const id=Number(req.params.id);
 
   const delIndex= JOKE.findIndex((user)=>{
